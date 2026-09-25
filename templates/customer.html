@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1>Hello Customer!</h1>
+
+<p>Review your order!</p>
+
+<table>
+    <tr>
+        <th>Order #</th>
+        <th>Shipping Address</th>
+        <th>Last 4 Digits of Payment Card</th>
+    </tr>
+
+    {% if orders %}
+        {% for order in orders %}
+        <tr>
+            <td> {{order.id}} </td>
+            <td> {{order.shipping_address}} </td>
+            <td> {{order.payment_card_number[-4:]}} </td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+
+</table>
+
+<a href="{{ url_for('logout') }}">Logout Here</a>
+
+{% endblock %}
